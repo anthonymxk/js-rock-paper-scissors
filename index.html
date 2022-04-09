@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<!--[if lt IE 7]>      <html class="no-js lt-ie9 lt-ie8 lt-ie7"> <![endif]-->
+<!--[if IE 7]>         <html class="no-js lt-ie9 lt-ie8"> <![endif]-->
+<!--[if IE 8]>         <html class="no-js lt-ie9"> <![endif]-->
+<!--[if gt IE 8]>      <html class="no-js"> <!--<![endif]-->
+<html>
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <title>JS Rock Paper Scissors</title>
+        <meta name="description" content="">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <link rel="stylesheet" href="">
+    </head>
+    <body>
+        <script>
+            //Win, lose, tie messages
+            const win = 'Win'
+            const lose = 'Lose'
+            const tie = 'Tie'
+            const error = 'Error' //catch all/error msg
+
+            //computerPlay - randomly returns rock, paper, or scissors
+            function computerPlay() {
+                const options = ['rock', 'paper', 'scissors'];
+                return options[Math.floor(Math.random() * options.length)];
+            }
+
+            //Play a single round
+            function simulateRound(computerChoice, userChoice) {
+                switch (userChoice){
+                    // If user chooses rock
+                    case 'rock':
+                        if (computerChoice === 'rock') {
+                            return tie
+                        }
+                        else if (computerChoice === 'paper') {
+                            return lose
+                        }
+                        else if (computerChoice === 'scissors') {
+                            return win
+                        }
+                    break;
+                    // If user chooses paper
+                    case 'paper':
+                        if (computerChoice === 'rock') {
+                            return win
+                        }
+                        else if (computerChoice === 'paper') {
+                            return tie
+                        }
+                        else if (computerChoice === 'scissors') {
+                            return lose
+                        }
+                    break;
+                    // If user chooses scissors
+                    case 'scissors':
+                        if (computerChoice === 'rock') {
+                            return lose
+                        }
+                        else if (computerChoice === 'paper') {
+                            return win
+                        }
+                        else if (computerChoice === 'scissors') {
+                            return tie
+                        }
+                    break;
+                    default:
+                        return error
+                }
+            }
+
+
+            function game() {
+                let initialize = prompt('How many games would you like to play?')
+            
+                for (let i = 0; i < initialize; i++) {
+                    let computerChoice = computerPlay()
+                    let userChoice = prompt('Rock, Paper, Scissors?').toLowerCase()
+                    console.log(simulateRound(computerChoice,userChoice))
+                }
+
+            }
+
+        </script>
+    </body>
+</html>
