@@ -19,6 +19,7 @@
             const lose = 'Lose'
             const tie = 'Tie'
             const error = 'Error' //catch all/error msg
+            let winTracker = 0
 
             //computerPlay - randomly returns rock, paper, or scissors
             function computerPlay() {
@@ -38,12 +39,14 @@
                             return lose
                         }
                         else if (computerChoice === 'scissors') {
+                            winTracker++
                             return win
                         }
                     break;
                     // If user chooses paper
                     case 'paper':
                         if (computerChoice === 'rock') {
+                            winTracker++
                             return win
                         }
                         else if (computerChoice === 'paper') {
@@ -59,6 +62,7 @@
                             return lose
                         }
                         else if (computerChoice === 'paper') {
+                            winTracker++
                             return win
                         }
                         else if (computerChoice === 'scissors') {
@@ -73,13 +77,13 @@
 
             function game() {
                 let initialize = prompt('How many games would you like to play?')
-            
                 for (let i = 0; i < initialize; i++) {
                     let computerChoice = computerPlay()
                     let userChoice = prompt('Rock, Paper, Scissors?').toLowerCase()
                     console.log(simulateRound(computerChoice,userChoice))
                 }
-
+                console.log(`You have won ${winTracker}/${initialize} games.`)
+                winTracker = 0
             }
 
         </script>
